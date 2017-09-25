@@ -5,7 +5,6 @@
   "mem": 128,
   "disk": 64,
   "instances": 2,
-  "acceptedResourceRoles": [],
   "container": {
     "type": "DOCKER",
     "volumes": [],
