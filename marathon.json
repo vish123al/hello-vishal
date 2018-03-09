@@ -1,50 +1,35 @@
 {
-  "id": "/webapp",
-  "cmd": null,
-  "cpus": 0.1,
-  "mem": 128,
-  "disk": 64,
-  "instances": 2,
+  "id": "/pipeline",
   "container": {
     "type": "DOCKER",
-    "volumes": [],
     "docker": {
-      "image": "vishaldenge/webapp3",
+      "image": "172.29.94.167:6555/docker-cicd/nginx",
       "network": "BRIDGE",
       "portMappings": [
         {
-          "containerPort": 80,
           "hostPort": 0,
-          "servicePort": 10106,
-          "protocol": "tcp",
+          "containerPort": 80,
           "labels": {
             "VIP_0": "/nginx:80"
           }
         }
       ],
-      "privileged": false,
-      "parameters": [],
       "forcePullImage": true
     }
   },
-  "healthChecks": [
-    {
-      "gracePeriodSeconds": 10,
-      "intervalSeconds": 2,
-      "timeoutSeconds": 10,
-      "maxConsecutiveFailures": 10,
-      "portIndex": 0,
-      "path": "/",
-      "protocol": "HTTP",
-      "ignoreHttp1xx": false
-    }
-  ],
-  "portDefinitions": [
-    {
-      "port": 10106,
-      "protocol": "tcp",
-      "name": "default",
-      "labels": {}
-    }
-  ]
+  "instances": 2,
+  "cpus": 0.1,
+  "mem": 128,
+  "disk": 64,
+  "healthChecks": [{
+    "protocol": "HTTP",
+    "path": "/",
+    "portIndex": 0,
+    "timeoutSeconds": 10,
+    "gracePeriodSeconds": 10,
+    "intervalSeconds": 2,
+    "maxConsecutiveFailures": 10
+  }],
+  "labels": {
+  }
 }
